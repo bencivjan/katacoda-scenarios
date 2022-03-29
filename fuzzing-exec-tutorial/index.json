@@ -43,7 +43,7 @@
   },
   "environment": {
     "showide": true,
-    "uilayout": "vscode-terminal-split"
+    "uilayout": "editor-terminal"
   },
   "backend": {
     "imageid": "python:3.8"
