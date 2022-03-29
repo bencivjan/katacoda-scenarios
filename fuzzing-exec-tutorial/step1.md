@@ -1,158 +1,44 @@
-Katacoda has extended Markdown to simplify the users interaction while completing the scenarios and encounter less mistakes.
+# ClusterFuzzLite Executable Tutorial - Brad Palagi, Ben Civjan
 
-## Copy to Clipboard
+## Intending Learning Outcomes:
+1. Backround on Fuzzing as a testing technique
+2. Explanation on the value of implementing Fuzzing as a CI DevOps fashion
+3. The ability to setup ClusterFuzzLight fuzzer on a Go project to be ran as a CI job with GitHub Actions in a git repo
 
-This extension will copy the command or text to the clipboard.
+## Overview of what will be accomplished throughout this tutorial:
 
-Markdown: 
-<pre>`echo "Copy to Clipboard"`{{copy}}</pre>
+1. Setting up ClusterFuzzLight on a Go project
+2. Integrating Fuzzing into a Git respository, using GitHub Actions to perform Fuzzing as a CI job 
+3. Illustrated flowchart on the overall process of this fuzzing implementation
 
-Results:
-`echo "Copy to Clipboard"`{{copy}}
+# Background:
 
-## Multi-Line Copy to Clipboard
+"Fuzzing or fuzz testing is an automated software testing technique that involves providing invalid, unexpected, or random data as inputs to a computer program. The program is then monitored for exceptions such as crashes, failing built-in code assertions, or potential memory leaks." 
 
-The same functionality as above is available over multiple lines.
+To improve the effectiveness of fuzzing beyond what can be acheived through pure random testing it is common to modify existing inputs rather than generate input from scratch.
 
-Markdown:
-<pre>
-```sh
-echo "Line 1"
+"An effective fuzzer generates semi-valid inputs that are "valid enough" so that they are not directly rejected from the parser and "invalid enough" so that they might stress corner cases and exercise interesting program behaviours." 
+There are several types of fuzzers, three are black-box, white-box, and grey-box.
 
-echo "Line 2"
+Black-box fuzzers are unaware of the program internals and an example would be to purely generate random inputs. The advantage to this type of fuzzer would be its ability to execute many inputs very quickly and to scale easily. Although, without leveraging program internals it is considered to be a shallow type of fuzzer which can only detect surface level bugs.
 
-echo "Line 3"
-```{{copy}}
-</pre>
+White-box fuzzers are leveraging program internals in an attempt to increase code coverage and discover deeply hidden bugs. Specific locations in the program could be targeted using this type of fuzzer, making it highly effective. Although, there is a chance where this type of fuzzer takes much longer execute each input and would lead back to a black-box fuzzer being more effective. With this in mind there are attempts to create black-box fuzzers which learn about program internals to eventually perform similarly to a white-box fuzzer, this would be to "combine the efficiency of blackbox fuzzers and the effectiveness of whitebox fuzzers"
 
-Results:
-```sh
-echo "Line 1"
+Gray-box fuzzers use instrumentation to trace block transitions exercised by input which leads to a balance of performance as well as increased code coverage.
 
-echo "Line 2"
+https://en.wikipedia.org/wiki/Fuzzing
 
-echo "Line 3"
-```{{copy}}
 
-## Execute in Terminal
 
-Katacoda has integration to automatically execute the commands for the terminal.
+# Value of Fuzztesting (in a CI Fasion)
 
-This is done by adding `execute` to the markdown code block, for example:
-<pre>`echo "Run in Terminal"`{{execute}}</pre>
+Fuzz testing itself can be valuable in finding bugs which were missed by test cases created by a developer. It would be impossible to think of all edge cases on ones own. 
 
-This creates:
-`echo "Run in Terminal"`{{execute}}
+To identify a bug a fuzzer needs to be able to determine a faulty behaviour from a feature. A typical fuzzer will report inputs that lead to a crash, and there are other sanitizers which can detect memory related errors, race conditions, undefined behaviour, etc.
 
-## Multi-Line Execute in Terminal
+https://en.wikipedia.org/wiki/Fuzzing
 
-The same functionality as above is available over multiple lines.
 
-<pre>
-```sh
-echo "Line 1"
 
-echo "Line 2"
+https://docs.google.com/document/d/1N-12_6YBPpF9o4_Zys_E_ZQndmD06wQVAM_0y9nZUIE/edit
 
-echo "Line 3"
-```{{execute}}
-
-</pre>
-
-This creates:
-```sh
-echo "Line 1"
-
-echo "Line 2"
-
-echo "Line 3"
-```{{execute}}
-
-## Interrupt
-
-When the user has long running commands, such as a watch, it can be useful to ensure that this is stopped but the user runs the next command. 
-
-<pre>`echo "Send Ctrl+C before running Terminal"`{{execute interrupt}}</pre>
-
-`echo "Send Ctrl+C before running Terminal"`{{execute interrupt}}
-
-## Interrupt
-
-When the user has long running commands, such as `top`{{execute}}, it can be useful to ensure that this is stopped but the user runs the next command. 
-
-<pre>`echo "Send Ctrl+C before running Terminal"`{{execute interrupt}}</pre>
-
-`echo "Send Ctrl+C before running Terminal"`{{execute interrupt}}
-
-## Control Sequences
-
-Alongside the interrupt command above, certain Control Sequences can be sent.
-
-Given a long running command, like `top`{{execute}}. It can be stopped using <kbd>Ctrl</kbd>+<kbd>C</kbd>. This can be executed as a control sequence with the command `^C`{{execute ctrl-seq}}
-
-The markdown for this is:
-<pre>
-`^C`{{execute ctrl-seq}}
-</pre>
-
-The use of control sequences can be useful when teaching applications such as `vim`{{execute}}.
-
-The instructions can guide the user on how  
-
-* Switch to insert mode by typing `i`{{execute no-newline}}
-
-* Once finished, press ESC (`^ESC`{{execute ctrl-seq}}) to switch back to normal mode
-
-* To exit, type `:q!`{{execute}}
-
-In the markdown, you would include:
-<pre>
-`i`{{execute no-newline}}
-
-`^ESC`{{execute ctrl-seq}}
-
-`:q!`{{execute}}
-</pre>
-
-Notice the use of `no-newline` as a way to send a keystroke with a carriage return following it.
-
-## Keyboard Icons
-
-This can also be helped by using Keyboard symbols to show users to use <kbd>Ctrl</kbd>+<kbd>C</kbd>
-
-The Markdown is:
-<pre>
-&#x3C;kbd&#x3E;Ctrl&#x3C;/kbd&#x3E;+&#x3C;kbd&#x3E;C&#x3C;/kbd&#x3E;
-</pre>
-
-
-## Execute on different hosts 
-
-When using the `terminal-terminal` layout and multiple hosts within the cluster, you can have commands executed on which host is required. This is used within our [Kubernetes scenarios](https://www.katacoda.com/courses/kubernetes/getting-started-with-kubeadm).
-
-<pre>
-`echo "Run in Terminal Host 1"`{{execute HOST1}}
-
-`echo "Run in Terminal Host 2"`{{execute HOST2}}
-</pre>
-
-`echo "Run in Terminal Host 1"`{{execute HOST1}}
-
-`echo "Run in Terminal Host 2"`{{execute HOST2}}
-
-## Execute in different Terminal windows
-
-When explaining complex systems, it can be useful to run commands in a separate terminal window. This can be run automatically by including the target Terminal number. 
-
-If the terminal is not open, it will launch and the command will be executed. 
-
-<pre>
-`echo "Run in Terminal 3"`{{execute T3}}
-
-`echo "Open and Execute in Terminal 4"`{{execute T4}}
-
-</pre>
-
-`echo "Run in Terminal 3"`{{execute T3}}
-
-`echo "Open and Execute in Terminal 4"`{{execute T4}}
