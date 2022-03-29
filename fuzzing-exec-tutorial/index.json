@@ -41,7 +41,10 @@
       "text": "finish.md"
     }
   },
-  "environment": {},
+  "environment": {
+    "showide": true,
+    "uilayout": "vscode-terminal-split"
+  },
   "backend": {
     "imageid": "python:3.8"
   }
