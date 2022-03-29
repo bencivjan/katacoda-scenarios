@@ -39,6 +39,15 @@
     },
     "finish": {
       "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "test.py",
+          "target": "/Users/bencivjan/Desktop/DevOps/katacoda-scenarios/fuzzing-exec-tutorial/code/",
+          "chmod": "+x"
+        }
+      ]
     }
   },
   "environment": {
