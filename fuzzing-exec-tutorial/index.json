@@ -44,7 +44,7 @@
       "host01": [
         {
           "file": "test.py",
-          "target": "/Users/bencivjan/Desktop/DevOps/katacoda-scenarios/fuzzing-exec-tutorial/code/",
+          "target": "/root",
           "chmod": "+x"
         }
       ]
