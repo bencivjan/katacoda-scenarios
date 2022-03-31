@@ -3,11 +3,12 @@
 ## Intending Learning Outcomes:
 1. Backround on Fuzzing as a testing technique
 2. Understanding the pros and cons of implementing Fuzzing versus standard unit testing
-3. The ability to integrate PythonFuzz testing with a Python project as a CI tool with Github actions
+3. The ability to integrate Google's Atheris Open Source Python fuzzer with a Python project
+4. How to add fuzzing to a CI workflow with Github actions
 
 ## Overview of what will be accomplished throughout this tutorial:
 
-1. Integrating PythonFuzz with a Python project
+1. Integrating Google's Atheris with a Python project
 2. Creating a GitHub repository to host project
 3. Setting up Fuzzing CI pipeline through GitHub Actions on new repo
 
@@ -30,7 +31,7 @@ https://en.wikipedia.org/wiki/Fuzzing
 
 
 
-# Value of Fuzztesting (in a CI Fasion)
+# Value of Fuzz testing (in a CI Fasion)
 
 Fuzz testing itself can be valuable in finding bugs which were missed by test cases created by a developer. It would be impossible to think of all edge cases on ones own. 
 
@@ -39,6 +40,24 @@ To identify a bug a fuzzer needs to be able to determine a faulty behaviour from
 https://en.wikipedia.org/wiki/Fuzzing
 
 
+Fuzzing is an efficient, cost-effective method of testing, it can provide thousands of tests in the time a few manual tests can be performed. The additional advantage is the automation possibilities fuzzing offers, many security professionals believe fuzzers should run continuously. Combining manual test cases with a fuzzer which can make modifications to inteligently created cases can result in a much more secure project.
 
-https://docs.google.com/document/d/1N-12_6YBPpF9o4_Zys_E_ZQndmD06wQVAM_0y9nZUIE/edit
+Fuzzing has found many bugs in large projects, mainly looking for: 
+- out of bounds
+- out of range
+- nil-pointer dereference
+- faulty type assertion
+- out of memory
+- off-by-one
+- infinite loop
+- timeout
+- divide by zero
+
+https://developer.ibm.com/blogs/how-fuzzing-can-make-your-open-source-project-more-secure-and-reliable/ 
+
+It is an essential security measure to constantly fuzz every code addition to a repository, thus using GitHub Actions is a great way to fuzz within a Continuous Integration workflow.
+
+# Fuzzing Workflow
+
+![Fuzzing Flowchart](FuzzFlowchartV1.jpg)
 
