@@ -16,9 +16,12 @@ Create a new file titled myFirstFuzz.py:
 import atheris
 import sys
 
+# TODO - instrumentation
 def myTarget(data):
     if data == b'caught!':
         raise RuntimeError("The error in the code has been found.")
+    else:
+        return "All good!"
 
 atheris.Setup(sys.argv, myTarget)
 atheris.Fuzz()
@@ -26,32 +29,16 @@ atheris.Fuzz()
 
 `python3 myFirstFuzz.py`{{execute}}
 
-<pre class="file" data-filename="myFirstFuzz.py" data-target="insert" data-marker="def myTarget(data)">
+After fuzzing this function, we see an interesting output: `ERROR: no interesting inputs were found. Is the code instrumented for coverage? Exiting.`
+
+If we take a look at the Atheris documentation, we see that this error occurs when the first 2 calls to our function didn't produce any coverage events. In our case, the reason for this is that we forgot to instrument our function. Without instrumentation, Atheris has no way to tailor its inputs to maximize the code coverage.
+
+Insert the following to allow Atheris to instrument it:
+
+<pre class="file" data-filename="myFirstFuzz.py" data-target="insert" data-marker="TODO - instrumentation">
 @atheris.instrument_func
 </pre>
 
 `python3 myFirstFuzz.py`{{execute}}
 
-
-<pre class="file" data-filename="test2.py" data-target="replace">
-from html.parser import HTMLParser
-from pythonfuzz.main import PythonFuzz
-
-
-import atheris
-
-with atheris.instrument_imports():
-  from html.parser import HTMLParser
-  import sys
-
-def TestOneInput(data):
-    try:
-        string = data.decode('utf-8')
-        parser = HTMLParser()
-        parser.feed(string)
-    except UnicodeDecodeError:
-        pass
-
-atheris.Setup(sys.argv, TestOneInput)
-atheris.Fuzz()
-</pre>
+Ta Da! Atheris has successfully found the bug in our code. To see the input that caused the bug, check the stdout segment after `DE:` or check the crash report that was generated in the same directory.

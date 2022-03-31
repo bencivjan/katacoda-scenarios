@@ -11,3 +11,5 @@ A task which takes a corpus and removes unnecessary inputs while maintaining the
 
 **Crash state**
 A signature that we generate from the crash stacktrace for deduplication purposes.
+
+**Instrumentation**
