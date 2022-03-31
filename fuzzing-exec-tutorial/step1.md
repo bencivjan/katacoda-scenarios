@@ -2,27 +2,27 @@
 
 ## Intending Learning Outcomes:
 1. Backround on Fuzzing as a testing technique
-2. Explanation on the value of implementing Fuzzing as a CI DevOps fashion
-3. The ability to setup ClusterFuzzLight fuzzer on a Go project to be ran as a CI job with GitHub Actions in a git repo
+2. Understanding the pros and cons of implementing Fuzzing versus standard unit testing
+3. The ability to integrate PythonFuzz testing with a Python project as a CI tool with Github actions
 
 ## Overview of what will be accomplished throughout this tutorial:
 
-1. Setting up ClusterFuzzLight on a Go project
-2. Integrating Fuzzing into a Git respository, using GitHub Actions to perform Fuzzing as a CI job 
-3. Illustrated flowchart on the overall process of this fuzzing implementation
+1. Integrating PythonFuzz with a Python project
+2. Creating a GitHub repository to host project
+3. Setting up Fuzzing CI pipeline through GitHub Actions on new repo
 
 # Background:
 
-"Fuzzing or fuzz testing is an automated software testing technique that involves providing invalid, unexpected, or random data as inputs to a computer program. The program is then monitored for exceptions such as crashes, failing built-in code assertions, or potential memory leaks." 
+"Fuzzing or fuzz testing is an automated software testing technique that involves providing invalid, unexpected, or random data as inputs to a computer program. The program is then monitored for exceptions such as crashes, failing built-in code assertions, or potential memory leaks."
+
+The best fuzzers are ones that provide input that is on the boundary of validity. Rather than providing completely invalid inputs that would be immediately rejected by the program, a good fuzzer should provide *valid-enough* input so that a function will accept
+it but produce wrong or unexpected results. This results in the best testing of edge cases and can stress-test the program very well
+when used appropriately.
+
+Fuzzing is an extremely useful technique when examining the security of a software program. One of the most useful areas of code to
+fuzz is a 'trust boundary'. A trust boundary is a section of code where the input is from an untrusted user (i.e. A form input, http request, etc.) as opposed to a trusted user (eg. config file that can only be modified by an admin)
 
 To improve the effectiveness of fuzzing beyond what can be acheived through pure random testing it is common to modify existing inputs rather than generate input from scratch.
-
-"An effective fuzzer generates semi-valid inputs that are "valid enough" so that they are not directly rejected from the parser and "invalid enough" so that they might stress corner cases and exercise interesting program behaviours." 
-There are several types of fuzzers, three are black-box, white-box, and grey-box.
-
-Black-box fuzzers are unaware of the program internals and an example would be to purely generate random inputs. The advantage to this type of fuzzer would be its ability to execute many inputs very quickly and to scale easily. Although, without leveraging program internals it is considered to be a shallow type of fuzzer which can only detect surface level bugs.
-
-White-box fuzzers are leveraging program internals in an attempt to increase code coverage and discover deeply hidden bugs. Specific locations in the program could be targeted using this type of fuzzer, making it highly effective. Although, there is a chance where this type of fuzzer takes much longer execute each input and would lead back to a black-box fuzzer being more effective. With this in mind there are attempts to create black-box fuzzers which learn about program internals to eventually perform similarly to a white-box fuzzer, this would be to "combine the efficiency of blackbox fuzzers and the effectiveness of whitebox fuzzers"
 
 Gray-box fuzzers use instrumentation to trace block transitions exercised by input which leads to a balance of performance as well as increased code coverage.
 
