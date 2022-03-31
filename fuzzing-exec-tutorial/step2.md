@@ -1,4 +1,4 @@
-# Pros and Cons of Fuzzing
+# Pros and Cons of Fuzzing<sup>4<sup>
 
 |Advantages of fuzzing|Disadvantages of fuzzing|
 |---------------------|------------------------|
@@ -9,5 +9,3 @@
 |Zero False Positives. Fuzzing does not produce any false positives. If the Fuzzer found an error, it’s a problem that needs to be addressed.|Can be misused by malware developer|
 |Fuzzing is scalable. Several tools can test the application simultaneously, which makes Fuzzing highly scalable.|Programs with complex inputs can require much more work to produce a smart enough fuzzer to get sufficient code coverage|
 
-
-https://securityfocal.com/what-is-fuzzing-types-advantages-disadvantages/
