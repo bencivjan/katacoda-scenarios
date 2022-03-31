@@ -61,5 +61,5 @@ It is an essential security measure to constantly fuzz every code addition to a 
 
 # Fuzzing Workflow
 
-![Fuzzing Flowchart](/fuzzing-exec-tutorial/FuzzFlowchartV1.jpg)
+![Fuzzing Flowchart](/root/FuzzFlowchartV1.jpg)
 

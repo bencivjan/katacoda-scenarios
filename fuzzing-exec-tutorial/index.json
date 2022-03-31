@@ -47,6 +47,13 @@
           "target": "/root",
           "chmod": "+x"
         }
+      ],
+      "host02": [
+        {
+          "file": "FuzzFlowchartV1.jpg",
+          "target": "/root",
+          "chmod": "+r"
+        }
       ]
     }
   },
