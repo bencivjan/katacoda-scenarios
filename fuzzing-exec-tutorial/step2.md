@@ -6,8 +6,8 @@ White-box fuzzers are leveraging program internals in an attempt to increase cod
 
 
 
-<pre class="file" data-filename="test.py" data-target="replace">
-python3 -m pip install atheris
+<pre>
+python3 -m pip install atheris{{execute}}
 </pre>
 
 <pre class="file" data-filename="test.py" data-target="replace">
