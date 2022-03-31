@@ -5,9 +5,7 @@ Black-box fuzzers are unaware of the program internals and an example would be t
 White-box fuzzers are leveraging program internals in an attempt to increase code coverage and discover deeply hidden bugs. Specific locations in the program could be targeted using this type of fuzzer, making it highly effective. Although, there is a chance where this type of fuzzer takes much longer execute each input and would lead back to a black-box fuzzer being more effective. With this in mind there are attempts to create black-box fuzzers which learn about program internals to eventually perform similarly to a white-box fuzzer, this would be to "combine the efficiency of blackbox fuzzers and the effectiveness of whitebox fuzzers"
 
 
-
-
-
+`python3 -m pip install atheris`{{execute}}
 
 <pre class="file" data-filename="test.py" data-target="replace">
 from html.parser import HTMLParser
