@@ -43,7 +43,7 @@
     "assets": {
       "host01": [
         {
-          "file": "test.py",
+          "file": "test2.py",
           "target": "/root",
           "chmod": "+x"
         },
