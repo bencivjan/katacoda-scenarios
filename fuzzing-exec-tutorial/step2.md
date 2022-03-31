@@ -1,6 +1,6 @@
 # Types of Fuzzers / More Details
 
-There are several types of fuzzers, three are black-box, white-box, and grey-box.
+There are several types of fuzzers, three are black-box, white-box, and gray-box.
 
 Black-box fuzzers are unaware of the program internals and an example would be to purely generate random inputs. The advantage to this type of fuzzer would be its ability to execute many inputs very quickly and to scale easily. Although, without leveraging program internals it is considered to be a shallow type of fuzzer which can only detect surface level bugs.
 
