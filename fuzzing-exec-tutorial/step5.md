@@ -29,6 +29,8 @@ atheris.Setup(sys.argv, myTarget)
 atheris.Fuzz()
 </pre>
 
+Now execute the script:
+
 `python3 myFirstFuzz.py`{{execute}}
 
 After fuzzing this function, we see an interesting output: `ERROR: no interesting inputs were found. Is the code instrumented for coverage? Exiting.`
@@ -37,9 +39,7 @@ If we take a look at the Atheris documentation, we see that this error occurs wh
 
 Replace `# TODO - instrumentation` with the following to allow Atheris to instrument it:
 
-<pre class="file" data-filename="myFirstFuzz.py" data-target="insert" data-marker="TODO - instrumentation">
-@atheris.instrument_func
-</pre>
+<pre class="file" data-filename="myFirstFuzz.py" data-target="insert" data-marker="# TODO - instrumentation">@atheris.instrument_func</pre>
 
 And execute it once again:
 
