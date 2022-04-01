@@ -8,11 +8,7 @@ First create a function called libFuzzing.py:
 
 And insert the following code into the file:
 
-<pre class="file" data-filename="test2.py" data-target="replace">
-from html.parser import HTMLParser
-from pythonfuzz.main import PythonFuzz
-
-
+<pre class="file" data-filename="libFuzzing.py" data-target="replace">
 import atheris
 
 with atheris.instrument_imports():
@@ -33,10 +29,10 @@ atheris.Fuzz()
 
 It should be apparent that we are unable to instrument the specific function that we are testing, because we don't have immediate access to the source code. To be able to still instrument the function that we are testing, we import the libraries under `with atheris.instrument_imports()`. This tells Atheris to instrument these libraries before fuzzing.
 
-Now run the code with `python3 libFuzzing.py`
+Now run the code with `python3 libFuzzing.py`{{execute}}
 
 We now notice that HTMLParser() has raised an error. To check the input that caused it to crash, open the auto-generated crash log in the current directory.
 
-At first glance, it seems that since the HTML we fed the parser was invalid this should be expected behavior. However, according to the HTMLParser docs: "Parsing invalid HTML (e.g. unquoted attributes) also works".<sup>5</sup> So it seems we have found a real bug in a real-world library!
+At first glance, it seems that since the HTML we fed the parser was invalid, this should be expected behavior. However, according to the HTMLParser docs: "Parsing invalid HTML (e.g. unquoted attributes) also works".<sup>5</sup> So it seems we have found a real bug in a real-world library!
 
 In fact, this bug has been brought up in developer forums and you can follow the progress [here](https://bugs.python.org/issue32876).
