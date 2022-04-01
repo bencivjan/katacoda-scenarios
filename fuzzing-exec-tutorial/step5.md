@@ -1,4 +1,4 @@
-# Testing a Python Module with Atheris
+# Fuzzing a Python Function with Atheris
 
 To get started with ClusterFuzzLite we need to install Atheris, ClusterFuzzLite's preferred Python fuzzing engine.
 
@@ -11,6 +11,8 @@ Atheris uses the Gray-box fuzzing strategy. As stated previously, this means tha
 Create a new file titled myFirstFuzz.py:
 
 `touch myFirstFuzz.py`{{execute}}
+
+Now we need to create a function to fuzz. In order to test the fuzzer we will create a single case where we throw an error. In the example below, the only input that will cause an error is 'caught!'. Let's see if Atheris can catch it.
 
 <pre class="file" data-filename="myFirstFuzz.py" data-target="replace">
 import atheris
@@ -33,11 +35,13 @@ After fuzzing this function, we see an interesting output: `ERROR: no interestin
 
 If we take a look at the Atheris documentation, we see that this error occurs when the first 2 calls to our function didn't produce any coverage events. In our case, the reason for this is that we forgot to instrument our function. Without instrumentation, Atheris has no way to tailor its inputs to maximize the code coverage.
 
-Insert the following to allow Atheris to instrument it:
+Replace `# TODO - instrumentation` with the following to allow Atheris to instrument it:
 
 <pre class="file" data-filename="myFirstFuzz.py" data-target="insert" data-marker="TODO - instrumentation">
 @atheris.instrument_func
 </pre>
+
+And execute it once again:
 
 `python3 myFirstFuzz.py`{{execute}}
 
