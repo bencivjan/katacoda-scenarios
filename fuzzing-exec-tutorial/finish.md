@@ -1,4 +1,4 @@
-Congratulations on completing this Fuzzing tutorial!
+Thanks for participating!
 
 Sources:
 
