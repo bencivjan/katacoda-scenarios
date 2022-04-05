@@ -56,7 +56,7 @@
         },
         {
           "file": "fuzz_for_secret.py",
-          "target": "/assets"
+          "target": "/root"
         }
       ]
     }

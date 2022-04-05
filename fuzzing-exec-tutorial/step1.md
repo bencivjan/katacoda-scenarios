@@ -4,10 +4,7 @@ OSS-Fuzz is Googles open source repository for fuzzing, it includes ClusterFuzzL
 1. Backround on Fuzzing as a testing technique
 2. Understanding the pros and cons of implementing Fuzzing versus standard unit testing
 3. The ability to integrate Google's Atheris Open Source Python fuzzer with a Python project
-
-***Bonus Section*** 
-
-4. How to add fuzzing to a CI workflow with Github actions
+4. ***Bonus Section***  How to add fuzzing to a CI workflow with Github actions
 
 ## Overview of what will be accomplished throughout this tutorial:
 
