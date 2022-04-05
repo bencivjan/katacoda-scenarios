@@ -53,8 +53,11 @@
         {
           "file": "flowchart.png",
           "target": "/assets"
+        },
+        {
+          "file": "fuzz_for_secret.py",
+          "target": "/assets"
         }
-
       ]
     }
   },
