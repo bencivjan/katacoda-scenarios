@@ -45,7 +45,12 @@
         {
           "file": "easterEgg.txt",
           "target": "/root"
+        },
+        {
+          "file": "FuzzFlowchartV2.png",
+          "target": "/root"
         }
+
       ]
     }
   },
