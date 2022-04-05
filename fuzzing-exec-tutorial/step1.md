@@ -1,7 +1,7 @@
 OSS-Fuzz is Googles open source repository for fuzzing, it includes ClusterFuzzLite as its solution for CI workflows. ClusterFuzzLite uses the Atheris package for fuzzing python.
 
 
-![Flowchart](./assets/FuzzFlowChartV2.png)
+![Flowchart](./assets/flowchart.png)
 
 ## Intending Learning Outcomes:
 1. Backround on Fuzzing as a testing technique
