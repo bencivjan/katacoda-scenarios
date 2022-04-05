@@ -36,3 +36,14 @@ We now notice that HTMLParser() has raised an error. To check the input that cau
 At first glance, it seems that since the HTML we fed the parser was invalid, this should be expected behavior. However, according to the HTMLParser docs: "Parsing invalid HTML (e.g. unquoted attributes) also works".<sup>5</sup> So it seems we have found a real bug in a real-world library!
 
 In fact, this bug has been brought up in developer forums and you can follow the progress [here](https://bugs.python.org/issue32876).
+
+***Can you find the secret bug?***
+Without looking at the source code, see if you can reveal the secret bug in `fuzz_for_secret.py`
+
+Hints:
+
+Make sure to instrument `from fuzz_for_secret import main`
+
+`main` takes a string as input
+
+Put the bug input into a browser for a surprise :)

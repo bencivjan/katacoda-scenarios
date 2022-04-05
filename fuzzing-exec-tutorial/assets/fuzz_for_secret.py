@@ -1,17 +1,5 @@
-import atheris
-import sys
-
-with atheris.instrument_imports():
-  from html.parser import HTMLParser
-
-
-def TestOneInput(data):
-    try:
-        string = data.decode('utf-8')
-        parser = HTMLParser()
-        parser.feed(string)
-    except UnicodeDecodeError:
+def main(input):
+    if input == 'https://miro.medium.com/max/500/1*Xd8Dc_7u8qcGeTA4wQMc0Q.jpeg':
+        raise RuntimeError('You found the secret link!')
+    else:
         pass
-
-atheris.Setup(sys.argv, TestOneInput)
-atheris.Fuzz()
