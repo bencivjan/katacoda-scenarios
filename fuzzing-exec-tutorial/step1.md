@@ -8,8 +8,8 @@ OSS-Fuzz is Googles open source repository for fuzzing, it includes ClusterFuzzL
 
 ## Overview of what will be accomplished throughout this tutorial:
 
-1. Integrating Google's Atheris with a Python project
-2. Creating a GitHub repository to host project
+1. Background Learning of Fuzzing
+2. Integrating Google's Atheris with a Python project
 3. Setting up Fuzzing CI pipeline through GitHub Actions on new repo
 
 # Background:
