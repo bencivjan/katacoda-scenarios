@@ -1,5 +1,7 @@
 # Value of Fuzz testing (in a CI Fasion)
 
+![Flowchart](./assets/flowchart.png)
+
 Fuzz testing itself can be valuable in finding bugs which were missed by test cases created by a developer. It would be impossible to think of all edge cases on ones own. 
 
 To identify a bug a fuzzer needs to be able to determine a faulty behaviour from a feature. A typical fuzzer will report inputs that lead to a crash, and there are other sanitizers which can detect memory related errors, race conditions, undefined behaviour, etc.
