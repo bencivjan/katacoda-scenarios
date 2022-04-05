@@ -19,5 +19,3 @@ Fuzzing has found many bugs in large projects, mainly looking for:<sup>2</sup>
 - divide by zero
 
 It is an essential security measure to constantly fuzz every code addition to a repository, thus using GitHub Actions is a great way to fuzz within a Continuous Integration workflow.
-
-![Flowchart](/root/FuzzFlowChartV2.png)
